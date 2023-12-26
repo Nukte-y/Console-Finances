@@ -86,3 +86,34 @@ var finances = [
   ['Jan-2017', 138230],
   ['Feb-2017', 671099],
 ];
+
+var months=[];
+var totalAry=[];
+var total=0;
+var changes=0;
+var index=0;  
+
+  for(i=0; i<finances.length; i++) {
+      var subary=finances[i]; 
+      var currentMonth=subary[0];
+      var currentTotal=subary[1];
+
+        if(!months.includes(currentMonth)) {  //Checking if there is any duplicate months
+          months[i]=currentMonth;             //array includes months
+          totalAry[i]=currentTotal;           //array includes profit/loss
+          index++;                            //The total number of months included in the dataset 
+          total+=subary[1];                   //The net total amount of Profit/Losses over the entire period  
+        }
+  }
+  for(i=0;i<((totalAry.length)-1);i++){
+    changes +=((totalAry[i+1])-(totalAry[i]));  //The net total amount of changes over the entire period
+  }
+  var average= changes/(index-1);               //The average of the changes in Profit/Losses over the entire period
+
+console.log (months);
+console.log(index);
+console.log(total);
+console.log(changes);
+
+
+
