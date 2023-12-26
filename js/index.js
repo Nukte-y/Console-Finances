@@ -1,5 +1,5 @@
 var finances = [
-  ['Jan-2010', 867884],
+  ['Jan-2010', 867884], 
   ['Feb-2010', 984655],
   ['Mar-2010', 322013],
   ['Apr-2010', -69417],
@@ -114,17 +114,19 @@ var index=0;
       totalChanges+=changes;
   }
   var average = totalChanges/(index-1);        //The average of the changes in Profit/Losses over the entire period
+  
   var maxValue = changesAry[0];
   var minValue = changesAry[0];
 
-  for(i=0;i<changesAry.length;i++){           // The greatest increase in Profit/Losses (date and difference in the amounts) over the entire period.
-        if(changesAry[i]>maxValue){
+
+  for(let i=0;i<changesAry.length;i++){           // The greatest increase in Profit/Losses (date and difference in the amounts) over the entire period.
+        if(changesAry[i]>=maxValue){
           maxValue=changesAry[i];
           var maxIndex=i;  
         }
   } 
-  for(i=0;i<changesAry.length;i++){           //The greatest decrease in Profit/Losses (date and difference in the amounts) over the entire period.
-        if(changesAry[i]<minValue){
+  for(let i=0;i<changesAry.length;i++){           //The greatest decrease in Profit/Losses (date and difference in the amounts) over the entire period.
+        if(changesAry[i]<=minValue){
           minValue=changesAry[i];
           var minIndex=i;
         }
@@ -132,13 +134,12 @@ var index=0;
   }  
     
 
+console.log("Financial Analysis");
+console.log("-------------------");
+console.log ("Total Months: "+ index);
+console.log("Total: " +"$"+ total);
+console.log("Average Change: "+ average.toFixed(2));  // rounded to two decimal places
+console.log("Greatest Increase in Profits/Losses: "+ months[maxIndex+1]+ "\n"+"("+'$'+maxValue+")");
+console.log("Greatest Decrease in Profits/Losses: "+ months[minIndex+1]+ "\n"+"("+'$'+minValue+")");
 
-console.log (months);
-console.log(index);
-console.log(total);
-console.log(totalChanges);
-console.log(changesAry);
-console.log(maxValue);
-console.log(maxIndex);
-console.log(minValue);
 
