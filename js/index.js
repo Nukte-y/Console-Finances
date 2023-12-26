@@ -89,8 +89,10 @@ var finances = [
 
 var months=[];
 var totalAry=[];
+var changesAry=[];
 var total=0;
 var changes=0;
+var totalChanges=0;
 var index=0;  
 
   for(i=0; i<finances.length; i++) {
@@ -106,14 +108,18 @@ var index=0;
         }
   }
   for(i=0;i<((totalAry.length)-1);i++){
-    changes +=((totalAry[i+1])-(totalAry[i]));  //The net total amount of changes over the entire period
+      changes=((totalAry[i+1])-(totalAry[i]));  //The net total amount of changes over the entire period
+      changesAry.push(changes);
+      totalChanges+=changes;
   }
-  var average= changes/(index-1);               //The average of the changes in Profit/Losses over the entire period
+  var average= totalChanges/(index-1);          //The average of the changes in Profit/Losses over the entire period
+
+                                              
 
 console.log (months);
 console.log(index);
 console.log(total);
-console.log(changes);
-
+console.log(totalChanges);
+console.log(changesAry);
 
 
