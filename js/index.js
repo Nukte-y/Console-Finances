@@ -93,7 +93,8 @@ var changesAry=[];
 var total=0;
 var changes=0;
 var totalChanges=0;
-var index=0;  
+var index=0; 
+
 
   for(i=0; i<finances.length; i++) {
       var subary=finances[i]; 
@@ -108,18 +109,26 @@ var index=0;
         }
   }
   for(i=0;i<((totalAry.length)-1);i++){
-      changes=((totalAry[i+1])-(totalAry[i]));  //The net total amount of changes over the entire period
+      changes=((totalAry[i+1])-(totalAry[i])); //The net total amount of changes over the entire period
       changesAry.push(changes);
       totalChanges+=changes;
   }
-  var average= totalChanges/(index-1);          //The average of the changes in Profit/Losses over the entire period
+  var average = totalChanges/(index-1);         //The average of the changes in Profit/Losses over the entire period
+  var maxValue = changesAry[0];
 
-                                              
+    for(i=0;i<changesAry.length;i++){           // The greatest increase in Profit/Losses (date and difference in the amounts) over the entire period.
+          if(changesAry[i]>maxValue){
+            maxValue=changesAry[i];
+            var maxIndex=i;  
+          }
+    }                                             
 
 console.log (months);
 console.log(index);
 console.log(total);
 console.log(totalChanges);
 console.log(changesAry);
+console.log(maxValue);
+console.log(maxIndex);
 
 
