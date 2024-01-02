@@ -88,57 +88,36 @@ var finances = [
 ];
 
 var months=[];
-var totalAry=[];
-var changesAry=[];
-var total=0;
-var changes=0;
-var totalChanges=0;
-var index=0; 
+var values=[];
+var changes=[];
 
+    finances.map(element=>{
+      months.push(element[0]);            //array contains months
+      values.push(element[1]);}           //array contains numbers of the months
+      )
 
-  for(i=0; i<finances.length; i++) {
-      var subary=finances[i]; 
-      var currentMonth=subary[0];
-      var currentTotal=subary[1];
+    var total=values.reduce((sum,current) => sum+current);      //The net total amount of Profit/Losses over the entire period.
 
-        if(!months.includes(currentMonth)) {  //Checking if there is any duplicate months
-          months[i]=currentMonth;             //array includes months
-          totalAry[i]=currentTotal;           //array includes profit/loss
-          index++;                            //The total number of months included in the dataset 
-          total+=subary[1];                   //The net total amount of Profit/Losses over the entire period  
-        }
-  }
-  for(i=0;i<((totalAry.length)-1);i++){
-      changes=((totalAry[i+1])-(totalAry[i])); //The net total amount of changes over the entire period
-      changesAry.push(changes);
-      totalChanges+=changes;
-  }
-  var average = totalChanges/(index-1);        //The average of the changes in Profit/Losses over the entire period
-  
-  var maxValue = changesAry[0];
-  var minValue = changesAry[0];
+    for(i=0;i<values.length-1;i++){
+      changes.push(values[i+1]-values[i]) }      //array contains changes in each month
 
+    var {maxValue, maxIndex} = changes.reduce( 
+      (max,current,index) => current > max.maxValue ? {maxValue: current, maxIndex:index} : max,   
+      { maxValue:-Infinity, maxIndex:-1});      // The greatest increase in Profit/Losses (date and difference in the amounts) over the entire period.
+    
+    var {minValue, minIndex}=changes.reduce(
+      (min,current,index) => current < min.minValue ? { minValue:current, minIndex:index} : min,  
+      {minValue:Infinity, minIndex:-1});   //The greatest decrease in Profit/Losses over the entire period and index number
 
-  for(let i=0;i<changesAry.length;i++){           // The greatest increase in Profit/Losses (date and difference in the amounts) over the entire period.
-        if(changesAry[i]>=maxValue){
-          maxValue=changesAry[i];
-          var maxIndex=i;  
-        }
-  } 
-  for(let i=0;i<changesAry.length;i++){           //The greatest decrease in Profit/Losses (date and difference in the amounts) over the entire period.
-        if(changesAry[i]<=minValue){
-          minValue=changesAry[i];
-          var minIndex=i;
-        }
-
-  }  
+    var sum=changes.reduce((sum,current) => sum+current,0);                  //sum of the changes
+    var average=(sum/changes.length).toFixed(2);                             //average of the changes
     
 
 console.log("Financial Analysis");
 console.log("-------------------");
-console.log ("Total Months: "+ index);
+console.log ("Total Months: "+ finances.length);
 console.log("Total: " +"$"+ total);
-console.log("Average Change: "+ average.toFixed(2));  // rounded to two decimal places
+console.log("Average Change: "+ average);
 console.log("Greatest Increase in Profits/Losses: "+ months[maxIndex+1]+ "\n"+"("+'$'+maxValue+")");
 console.log("Greatest Decrease in Profits/Losses: "+ months[minIndex+1]+ "\n"+"("+'$'+minValue+")");
 
