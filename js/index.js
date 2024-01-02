@@ -118,7 +118,7 @@ console.log("-------------------");
 console.log ("Total Months: "+ finances.length);
 console.log("Total: " +"$"+ total);
 console.log("Average Change: "+ average);
-console.log("Greatest Increase in Profits/Losses: "+ months[maxIndex+1]+ "\n"+"("+'$'+maxValue+")");
-console.log("Greatest Decrease in Profits/Losses: "+ months[minIndex+1]+ "\n"+"("+'$'+minValue+")");
+console.log("Greatest Increase in Profits/Losses: "+ months[maxIndex+1]+" ("+'$'+maxValue+")");
+console.log("Greatest Decrease in Profits/Losses: "+ months[minIndex+1]+" ("+'$'+minValue+")");
 
 
